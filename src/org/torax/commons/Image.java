@@ -26,7 +26,7 @@ public class Image {
      * @param pixelRange
      */
     public Image(int[][][] data, Range<Integer> pixelRange) {
-        this.data = data;
+        this.data = ArrayHelper.copy(data);
         this.pixelRange = pixelRange;
     }
     
