@@ -82,5 +82,14 @@ public class Range<T extends Number> {
     public String toString() {
         return "Range{" + "lower=" + lower + ", higher=" + higher + '}';
     }
+
+    /**
+     * Returns the length of the range
+     * 
+     * @return double
+     */
+    public double getLength() {
+        return higher.doubleValue() - lower.doubleValue() + 1;
+    }
     
 }
