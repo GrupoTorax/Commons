@@ -15,6 +15,12 @@ public class ImageAssert {
      * @param result 
      */
     public static final void assertImage(Image expected, Image result) {
+        if (expected == null || result == null) {
+            if (expected == null && result == null) {
+                return;
+            }
+            fail();
+        }
         assertImageMetadata(expected, result);
         assertImageData(expected.getData(), result.getData());
     }
