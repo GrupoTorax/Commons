@@ -51,7 +51,7 @@ public class Range<T extends Number> {
     public T getHigher() {
         return higher;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 7;
