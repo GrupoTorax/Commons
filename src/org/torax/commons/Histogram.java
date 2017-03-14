@@ -23,7 +23,7 @@ public class Histogram {
     }
 
     /**
-     * Returns the number of occurences of the specified value
+     * Returns the number of occurrences of the specified value
      * 
      * @param value
      * @return int
@@ -33,7 +33,7 @@ public class Histogram {
     }
 
     /**
-     * Returns the value that has the least occurences. If multiple values have the same number of occurences,
+     * Returns the value that has the least occurrences. If multiple values have the same number of occurrences,
      * returns the lowest
      * 
      * @return int
@@ -43,7 +43,7 @@ public class Histogram {
     }
 
     /**
-     * Returns the value that has the least occurences inside of range. If multiple values have the same number of occurences,
+     * Returns the value that has the least occurrences inside of range. If multiple values have the same number of occurrences,
      * returns the lowest
      * 
      * @param range
@@ -58,6 +58,34 @@ public class Histogram {
         }
         return leastOccurences - getOffset();
     }
+
+    /**
+     * Returns the value that has the max occurrences inside of range. If multiple values have the same number of occurrences,
+     * returns the highest
+     * 
+     * @return int
+     */
+    public int getValueWithMaxOccurences() {
+        return getValueWithMaxOccurences(originalRange);
+    }
+    
+    /**
+     * Returns the value that has the max occurrences inside of range. If multiple values have the same number of occurrences,
+     * returns the highest
+     * 
+     * @param range
+     * @return int
+     */
+    public int getValueWithMaxOccurences(Range<Integer> range) {
+        int highestOccurences = range.getLower() + getOffset();
+        for (int i = range.getLower() + getOffset() + 1; i <= range.getHigher() + getOffset(); i++) {
+            if (histogram[i] > histogram[highestOccurences]) {
+                highestOccurences = i;
+            }
+        }
+        return highestOccurences - getOffset();
+    }
+
     
     /**
      * Returns the offset
