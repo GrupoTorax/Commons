@@ -1,5 +1,6 @@
 package org.torax.commons;
 
+import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.awt.image.WritableRaster;
 import java.io.File;
@@ -155,6 +156,15 @@ public class ExamSlice {
 
     public void setSliceThickness(float sliceThickness) {
         this.sliceThickness = sliceThickness;
+    }
+
+    /**
+     * Returns the size of the slice
+     * 
+     * @return Dimension
+     */
+    public Dimension getSize() {
+        return new Dimension(bufferedImage.getWidth(), bufferedImage.getHeight());
     }
     
 }
