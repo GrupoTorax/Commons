@@ -56,7 +56,7 @@ public class ExamSlice {
     public BufferedImage getBufferedImageWithWLWW(int WL, int WW) {
         int[][] coefficientMatrix = getCoefficientMatrix();
         int minValue = WL - (WW / 2);
-        int maxValue = WL + WW / 2;
+        int maxValue = WL + (WW / 2);
         int offset = - minValue;
         
         minValue += offset;
@@ -67,12 +67,11 @@ public class ExamSlice {
                 if (coefficientMatrix[x][y] > 10000)  {
                     coefficientMatrix[x][y] = -2000;
                 }
-                    
                 
                 coefficientMatrix[x][y] += offset;
                 if (coefficientMatrix[x][y] < minValue) {
                     coefficientMatrix[x][y] = 0;
-                } else if (coefficientMatrix[x][y] > maxValue) {
+                } else if (coefficientMatrix[x][y] >= maxValue) {
                     coefficientMatrix[x][y] = 255;
                 } else {
                     coefficientMatrix[x][y] = coefficientMatrix[x][y] * 256 / maxValue;
