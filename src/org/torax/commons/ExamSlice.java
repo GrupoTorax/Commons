@@ -31,21 +31,21 @@ public class ExamSlice {
     // REVISAR MÉTODO(TALVEZ POSSA SER UM ATRIBUTO, TALVEZ NÃO)
     public int[][] getCoefficientMatrix() {
         return converteHU(getBufferedImage().getRaster(), 
-                          (int) getRescaleIntercept(),
-                          (int) getRescaleSlope(),
+                          getRescaleIntercept(),
+                          getRescaleSlope(),
                           isPadded(),
                           getPadValue());
     }            
                 
     // REVISAR MÉTODO
-    private int[][] converteHU(WritableRaster raster, int rescaleIntercept, int rescaleSlope, boolean isPadded, int padValue) {
+    private int[][] converteHU(WritableRaster raster, double rescaleIntercept, double rescaleSlope, boolean isPadded, int padValue) {
         int[][] matrizHU = new int[raster.getWidth()][raster.getHeight()];
         for (int x = 0; x < matrizHU.length; x++) {
             for (int y = 0; y < matrizHU[x].length; y++) {
                 if (isPadded && raster.getPixel(x, y, new int[1])[0] == padValue) {
                     matrizHU[x][y] = padValue;
                 } else {
-                    matrizHU[x][y] = raster.getPixel(x, y, new int[1])[0] * rescaleSlope + rescaleIntercept;
+                    matrizHU[x][y] = (int)(raster.getPixel(x, y, new double[1])[0] * rescaleSlope + rescaleIntercept);
                 }
             }
         }
@@ -79,7 +79,7 @@ public class ExamSlice {
             }
         }
 
-        BufferedImage image = new BufferedImage(coefficientMatrix.length, coefficientMatrix[0].length, BufferedImage.TYPE_BYTE_GRAY);
+        BufferedImage image = new BufferedImage(coefficientMatrix.length, coefficientMatrix[0].length, BufferedImage.TYPE_INT_RGB);
         for (int x = 0; x < image.getWidth(); x++) {
             for (int y = 0; y < image.getHeight(); y++) {
                 image.setRGB(x, y, getPixelValue(coefficientMatrix[x][y]));
