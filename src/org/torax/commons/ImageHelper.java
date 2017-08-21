@@ -17,6 +17,17 @@ public class ImageHelper {
         dataImage[0] = data;
         return new Image(dataImage, range);
     }
+    
+    /**
+     * Creates a image representation
+     * 
+     * @param image Image
+     * @param range Image range
+     * @return Image
+     */
+    public static Image create(Image image, Range<Integer> range) {
+        return new Image(ArrayHelper.copy(image.getData()), range);
+    }
 
     /**
      * Returns the image data
