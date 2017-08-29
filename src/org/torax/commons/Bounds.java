@@ -28,4 +28,13 @@ public class Bounds {
         this.height = height;
     }
     
+    /**
+     * Computes and return the center of the bounds
+     * 
+     * @return Point
+     */
+    public Point center() {
+        return new Point(x + (width / 2), y + (height / 2));
+    }
+    
 }
