@@ -5,6 +5,19 @@ package org.torax.commons;
  */
 public class Image {
 
+    /** Number of channels for RGB images */
+    public static final int CHANNELS_RGB = 3;
+    /** Number of channels for gray scale images */
+    public static final int CHANNELS_GRAYSCALE = 1;
+    /** Channel - Red */
+    public static final int CHANNEL_RED = 0;
+    /** Channel - Green */
+    public static final int CHANNEL_GREEN = 1;
+    /** Channel - Blue */
+    public static final int CHANNEL_BLUE = 2;
+    /** Channel - Gray (For gray scales) */
+    public static final int CHANNEL_GRAY = 0;
+
     /** Image data */
     private final int[][][] data;
     /** Range of possible values in a pixel */

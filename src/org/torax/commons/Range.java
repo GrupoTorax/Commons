@@ -4,7 +4,7 @@ import java.util.Objects;
 
 /**
  * Range of values
- * 
+ *
  * @param <T>
  */
 public class Range<T extends Number> {
@@ -16,27 +16,27 @@ public class Range<T extends Number> {
 
     /**
      * Creates a new range based on another Range
-     * 
-     * @param range 
+     *
+     * @param range
      */
     public Range(Range<T> range) {
         this(range.lower, range.higher);
     }
-            
+
     /**
      * Creates a new range
-     * 
+     *
      * @param lower
-     * @param higher 
+     * @param higher
      */
     public Range(T lower, T higher) {
-        this.lower   = lower;
+        this.lower = lower;
         this.higher = higher;
     }
-    
+
     /**
      * Returns the lower boundary of the range
-     * 
+     *
      * @return T
      */
     public T getLower() {
@@ -45,13 +45,29 @@ public class Range<T extends Number> {
 
     /**
      * Returns the higher boundary of the range
-     * 
+     *
      * @return T
      */
     public T getHigher() {
         return higher;
     }
-    
+
+    /**
+     * Limits the value in this range
+     *
+     * @param value
+     * @return T
+     */
+    public T limit(T value) {
+        if (value.doubleValue() > higher.doubleValue()) {
+            return higher;
+        }
+        if (value.doubleValue() < lower.doubleValue()) {
+            return lower;
+        }
+        return value;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -85,11 +101,11 @@ public class Range<T extends Number> {
 
     /**
      * Returns the length of the range
-     * 
+     *
      * @return double
      */
     public double getLength() {
         return higher.doubleValue() - lower.doubleValue() + 1;
     }
-    
+
 }
