@@ -61,5 +61,16 @@ public class ImageFactory {
     public static Image buildEmptyImage() {
         return buildEmptyImage(1, 1, 1, new Range<>(0, 1));
     }
+    
+    /**
+     * Creates a new BinaryImage
+     * 
+     * @param width
+     * @param height
+     * @return BinaryImage
+     */
+    public static BinaryImage buildBinaryImage(int width, int height) {
+        return new BinaryImage(buildEmptyImage(1, width, height, new Range<>(0, 1)));
+    }
 
 }
