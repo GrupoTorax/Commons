@@ -48,7 +48,9 @@ public class ImageAssert {
         for (int channel = 0; channel < expected.length; channel++) {
             for (int x = 0; x < expected[channel].length; x++) {
                 for (int y = 0; y < expected[channel][x].length; y++) {
-                    assertEquals(expected[channel][x][y], result[channel][x][y]);
+                    if (expected[channel][x][y] != result[channel][x][y]) {
+                        fail("expected:<" + expected[channel][x][y] + "> but was:<" + result[channel][x][y] + "> at pixel [" + channel + ", " + x + ", " + y + "]");
+                    }
                 }    
             }
         }

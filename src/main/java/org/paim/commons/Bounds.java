@@ -37,4 +37,8 @@ public class Bounds {
         return new Point(x + (width / 2), y + (height / 2));
     }
     
+    public boolean contains(int x, int y) {
+        return x >= this.x && x <= this.x + width && y >= this.y && y <= this.y + height;
+    }
+    
 }
