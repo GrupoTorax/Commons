@@ -55,43 +55,8 @@ public class ExamSlice {
     //REVISAR MÉTODO
     public BufferedImage getBufferedImageWithWLWW(int WL, int WW) {
         int[][] coefficientMatrix = getCoefficientMatrix();
-        int minValue = WL - (WW / 2);
-        int maxValue = WL + (WW / 2);
-        int offset = - minValue;
-        
-        minValue += offset;
-        maxValue += offset;
-        
-        for (int x = 0; x < coefficientMatrix.length; x++) {
-            for (int y = 0; y < coefficientMatrix[0].length; y++) {
-                if (coefficientMatrix[x][y] > 10000)  {
-                    coefficientMatrix[x][y] = -2000;
-                }
-                
-                coefficientMatrix[x][y] += offset;
-                if (coefficientMatrix[x][y] < minValue) {
-                    coefficientMatrix[x][y] = 0;
-                } else if (coefficientMatrix[x][y] >= maxValue) {
-                    coefficientMatrix[x][y] = 255;
-                } else {
-                    coefficientMatrix[x][y] = coefficientMatrix[x][y] * 256 / maxValue;
-                }
-            }
-        }
-
-        BufferedImage image = new BufferedImage(coefficientMatrix.length, coefficientMatrix[0].length, BufferedImage.TYPE_INT_RGB);
-        for (int x = 0; x < image.getWidth(); x++) {
-            for (int y = 0; y < image.getHeight(); y++) {
-                image.setRGB(x, y, getPixelValue(coefficientMatrix[x][y]));
-            }
-        }
-        return image;
+        return ConverterWLWW.getBufferedImage(coefficientMatrix, WL, WW);
     }
-
-    private int getPixelValue(int pixel) {
-        return (int) pixel << 16 | (int) pixel << 8 | (int) pixel;
-    }
-    
 
     public File getSourceFile() {
         return sourceFile;

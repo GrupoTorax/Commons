@@ -9,6 +9,13 @@ import java.util.Objects;
  */
 public class Range<T extends Number> {
 
+    /** Length - Binary image */
+    private static final int LENGTH_BINARY = 2;
+    /** Length - RGB image */
+    private static final int LENGTH_RGB = 256;
+    /** Length - DICOM image */
+    private static final int LENGTH_DICOM = 8001;
+    
     /** Lower boundary */
     private final T lower;
     /** Higher boundary */
@@ -108,4 +115,31 @@ public class Range<T extends Number> {
         return higher.doubleValue() - lower.doubleValue() + 1;
     }
 
+    /**
+     * Returns true if the length is binary
+     * 
+     * @return boolean
+     */
+    public boolean isBinary() {
+        return getLength() == LENGTH_BINARY;
+    }
+
+    /**
+     * Returns true if the length is RGB
+     * 
+     * @return boolean
+     */
+    public boolean isRGB() {
+        return getLength() == LENGTH_RGB;
+    }
+
+    /**
+     * Returns true if the length is DICOM
+     * 
+     * @return boolean
+     */
+    public boolean isDICOM() {
+        return getLength() == LENGTH_DICOM;
+    }
+    
 }
