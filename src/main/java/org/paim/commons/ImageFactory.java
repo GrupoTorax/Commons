@@ -3,7 +3,7 @@ package org.paim.commons;
 import java.awt.image.BufferedImage;
 
 /**
- *
+ * Image factory
  */
 public class ImageFactory {
 
