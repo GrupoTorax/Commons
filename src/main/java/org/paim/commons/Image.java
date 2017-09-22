@@ -84,6 +84,24 @@ public class Image {
     public int getChannelCount() {
         return data.length;
     }
+    
+    /**
+     * Returns true if the image is gray scale
+     * 
+     * @return 
+     */
+    public boolean isGrayScale() {
+        return getChannelCount() == CHANNELS_GRAYSCALE;
+    }
+
+    /**
+     * Returns true if the image is RGB
+     * 
+     * @return 
+     */
+    public boolean isRGB() {
+        return getChannelCount() == CHANNELS_RGB;
+    }
 
     /**
      * Returns the width of the image
