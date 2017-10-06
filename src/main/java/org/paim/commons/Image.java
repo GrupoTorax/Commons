@@ -68,9 +68,23 @@ public class Image {
     }
 
     /**
+     * Returns true if the image has a pixel
+     *
+     * @param channel
+     * @param x
+     * @param y
+     * @return boolean
+     */
+    public boolean has(int channel, int x, int y) {
+        return (channel >= 0 && channel <= getChannelCount())
+                && (x >= 0 && x < getWidth())
+                && (y >= 0 && y < getHeight());
+    }
+
+    /**
      * Returns the image data
      *
-     * @return int[][][]
+     * @return {@code int[][][]}
      */
     public int[][][] getData() {
         return data;
@@ -84,11 +98,11 @@ public class Image {
     public int getChannelCount() {
         return data.length;
     }
-    
+
     /**
      * Returns true if the image is gray scale
-     * 
-     * @return 
+     *
+     * @return
      */
     public boolean isGrayScale() {
         return getChannelCount() == CHANNELS_GRAYSCALE;
@@ -96,8 +110,8 @@ public class Image {
 
     /**
      * Returns true if the image is RGB
-     * 
-     * @return 
+     *
+     * @return
      */
     public boolean isRGB() {
         return getChannelCount() == CHANNELS_RGB;
@@ -119,6 +133,38 @@ public class Image {
      */
     public int getHeight() {
         return data[0][0].length;
+    }
+
+    /**
+     * Limits the value in the image width
+     * 
+     * @param x
+     * @return int
+     */
+    public int limitX(int x) {
+        if (x < 0) {
+            return 0;
+        }
+        if (x >= getWidth()) {
+            return getWidth() - 1;
+        }
+        return x;
+    }
+
+    /**
+     * Limits the value in the image height
+     * 
+     * @param y
+     * @return 
+     */
+    public int limitY(int y) {
+        if (y < 0) {
+            return 0;
+        }
+        if (y >= getHeight()) {
+            return getHeight() - 1;
+        }
+        return y;
     }
 
     /**
