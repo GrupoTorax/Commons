@@ -39,7 +39,21 @@ public class Image {
      * @param pixelRange
      */
     public Image(int[][][] data, Range<Integer> pixelRange) {
-        this.data = ArrayHelper.copy(data);
+        this(data, pixelRange, false);
+    }
+
+    /**
+     * Creates a new image
+     *
+     * @param data
+     * @param pixelRange
+     * @param shareData
+     */
+    protected Image(int[][][] data, Range<Integer> pixelRange, boolean shareData) {
+        if (!shareData) {
+            data = ArrayHelper.copy(data);
+        }
+        this.data = data;
         this.pixelRange = pixelRange;
     }
 

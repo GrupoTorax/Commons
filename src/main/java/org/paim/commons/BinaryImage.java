@@ -5,19 +5,26 @@ package org.paim.commons;
  */
 public class BinaryImage extends Image {
 
+    /** Label */
+    private final int label;
     /** Cached bounds */
     private Bounds bounds;
 
     public BinaryImage(Image image) {
-        super(image);
+        this(image, 1);
+    }
+
+    public BinaryImage(Image image, int label) {
+        super(image.getData(), image.getPixelValueRange(), true);
+        this.label = label;
     }
 
     public void set(int x, int y, boolean value) {
-        super.set(0, x, y, value ? 1 : 0);
+        super.set(0, x, y, value ? label : 0);
     }
 
     public boolean get(int x, int y) {
-        return super.get(0, x, y) == 1;
+        return super.get(0, x, y) == label;
     }
 
     /**
