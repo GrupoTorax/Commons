@@ -22,6 +22,10 @@ public class Image {
     private final int[][][] data;
     /** Range of possible values in a pixel */
     private final Range<Integer> pixelRange;
+    /** Image width */
+    private final int width; 
+    /** Image height */
+    private final int height; 
 
     /**
      * Creates a new image based on another image
@@ -53,6 +57,8 @@ public class Image {
         if (!shareData) {
             data = ArrayHelper.copy(data);
         }
+        width = data[0].length;
+        height = data[0][0].length;
         this.data = data;
         this.pixelRange = pixelRange;
     }
@@ -91,8 +97,8 @@ public class Image {
      */
     public boolean has(int channel, int x, int y) {
         return (channel >= 0 && channel <= getChannelCount())
-                && (x >= 0 && x < getWidth())
-                && (y >= 0 && y < getHeight());
+                && (x >= 0 && x < width)
+                && (y >= 0 && y < height);
     }
 
     /**
@@ -137,7 +143,7 @@ public class Image {
      * @return int
      */
     public int getWidth() {
-        return data[0].length;
+        return width;
     }
 
     /**
@@ -146,7 +152,7 @@ public class Image {
      * @return int
      */
     public int getHeight() {
-        return data[0][0].length;
+        return height;
     }
 
     /**
@@ -159,8 +165,8 @@ public class Image {
         if (x < 0) {
             return 0;
         }
-        if (x >= getWidth()) {
-            return getWidth() - 1;
+        if (x >= width) {
+            return width - 1;
         }
         return x;
     }
@@ -175,8 +181,8 @@ public class Image {
         if (y < 0) {
             return 0;
         }
-        if (y >= getHeight()) {
-            return getHeight() - 1;
+        if (y >= height) {
+            return height - 1;
         }
         return y;
     }
