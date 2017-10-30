@@ -29,7 +29,19 @@ public class ImageExporter {
      * @throws java.io.IOException 
      */
     public static void exportBufferedImage(Image image, File file) throws IOException {
-        BufferedImage buffered = ImageConverter.toBufferedImage(image);
+        exportBufferedImage(image, file, new RenderingOptions());
+    }
+    
+    /**
+     * Exports an image as a buffered image and all of it's supported formats
+     * 
+     * @param file
+     * @param image 
+     * @param options
+     * @throws java.io.IOException 
+     */
+    public static void exportBufferedImage(Image image, File file, RenderingOptions options) throws IOException {
+        BufferedImage buffered = ImageConverter.toBufferedImage(image, options);
         ImageIO.write(buffered, file.getName().substring(file.getName().lastIndexOf(".") + 1), file);
     }
     

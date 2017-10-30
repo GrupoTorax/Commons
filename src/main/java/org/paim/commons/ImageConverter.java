@@ -8,9 +8,6 @@ import java.awt.image.BufferedImage;
  */
 public class ImageConverter {
 
-    private static final int WINDOW_LEVEL = -400;
-    private static final int WINDOW_WIDTH = 1500;
-
     /**
      * Converts a image to a buffered image
      *
@@ -18,11 +15,22 @@ public class ImageConverter {
      * @return BufferedImage
      */
     public static BufferedImage toBufferedImage(Image image) {
+        return toBufferedImage(image, new RenderingOptions());
+    }
+
+    /**
+     * Converts a image to a buffered image
+     *
+     * @param image
+     * @param options
+     * @return BufferedImage
+     */
+    public static BufferedImage toBufferedImage(Image image, RenderingOptions options) {
         if (image == null) {
             return new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
         }
         if (image.getPixelValueRange().isDICOM()) {
-            return ConverterWLWW.getBufferedImage(image, WINDOW_LEVEL, WINDOW_WIDTH);
+            return ConverterWLWW.getBufferedImage(image, options.getDicomWindowLevel(), options.getDicomWindowWidth());
         }
         BufferedImage buff = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);
         for (int y = 0; y < image.getHeight(); y++) {
