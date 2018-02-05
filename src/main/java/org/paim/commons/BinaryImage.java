@@ -19,6 +19,11 @@ public class BinaryImage extends Image {
         this.label = label;
     }
 
+    public BinaryImage(BinaryImage image) {
+        super(image.getData(), image.getPixelValueRange(), false);
+        this.label = image.label;
+    }
+
     public void set(int x, int y, boolean value) {
         super.set(0, x, y, value ? label : 0);
     }
