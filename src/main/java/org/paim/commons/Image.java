@@ -76,6 +76,21 @@ public class Image {
     }
 
     /**
+     * Returns a color value
+     *
+     * @param x
+     * @param y
+     * @return Color
+     */
+    public Color getColor(int x, int y) {
+        short[] values = new short[getChannelCount()];
+        for (int i = 0; i < getChannelCount(); i++) {
+            values[i] = (short) data[i][x][y];
+        }
+        return new Color(values);
+    }
+
+    /**
      * Set a pixel value
      *
      * @param channel
@@ -85,6 +100,19 @@ public class Image {
      */
     public void set(int channel, int x, int y, int value) {
         data[channel][x][y] = value;
+    }
+    
+    /**
+     * Sets a pixel color
+     * 
+     * @param x
+     * @param y
+     * @param color 
+     */
+    public void setColor(int x, int y, Color color) {
+        for (int i = 0; i < data.length; i++) {
+            set(i, x, y, color.get(i));
+        }
     }
 
     /**
@@ -185,6 +213,16 @@ public class Image {
             return height - 1;
         }
         return y;
+    }
+    
+    /**
+     * Returns if the point is in the image bounds
+     * 
+     * @param point
+     * @return boolean
+     */
+    public boolean inBounds(Point point) {
+        return point.x >= 0 && point.y >= 0 && point.x < width && point.y < height;
     }
 
     /**
