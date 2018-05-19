@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.paim.commons;
 
 /**
@@ -19,8 +14,8 @@ public class RenderingOptions {
      * Creates a new set of rendering options
      */
     public RenderingOptions() {
-        dicomWindowLevel = -400;
-        dicomWindowWidth = 1500;
+        dicomWindowLevel = DicomWindow.LUNGS.getWindowLevel();
+        dicomWindowWidth = DicomWindow.LUNGS.getWindowWidth();
     }    
     
     /**

@@ -41,7 +41,6 @@ public class ImageConverter {
                 } else if (image.getPixelValueRange().isBinary()) {
                     r = g = b = (image.get(0, x, y) == 1 ? 255 : 0);
                 } else {
-
                     if (image.getChannelCount() == Image.CHANNELS_RGB) {
                         r = image.getPixelValueRange().limit(image.get(Image.CHANNEL_RED, x, y));
                         g = image.getPixelValueRange().limit(image.get(Image.CHANNEL_GREEN, x, y));
