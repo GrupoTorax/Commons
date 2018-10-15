@@ -36,6 +36,16 @@ public class ImageFactory {
      * @param baseImage
      * @return Image
      */
+    public static Image buildImage(Image baseImage) {
+        return new Image(baseImage);
+    }
+    
+    /**
+     * Creates a new empty image with an existing image configuration
+     *
+     * @param baseImage
+     * @return Image
+     */
     public static Image buildEmptyImage(Image baseImage) {
         return buildEmptyImage(baseImage.getChannelCount(), baseImage.getWidth(), baseImage.getHeight(), baseImage.getPixelValueRange());
     }
